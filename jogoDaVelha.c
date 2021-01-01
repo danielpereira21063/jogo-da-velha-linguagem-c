@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
+void tabuleiro(casa){
 
+}
+
+void main() {
+   int casas = {}
    system("pause");
-   return 0;
 }
