@@ -19,11 +19,13 @@ void limpar(char casas[9]){
 
 void tabuleiro(char casas[9]){
    system("cls");
+   printf("\n");
    printf("\t %c | %c | %c \n",casas[0],casas[1],casas[2]);
    printf("\t --------- \n");
    printf("\t %c | %c | %c \n",casas[3],casas[4],casas[5]);
    printf("\t --------- \n");
    printf("\t %c | %c | %c \n",casas[6],casas[7],casas[8]);
+   printf("\n");
 }
 
 void main(){
@@ -126,8 +128,13 @@ void main(){
          }
          tabuleiro(casas);
       }
-
-      printf("\t--------------------\n\tJOGADOR %c VENCEU\n\t--------------------", vencedor);
+      if(vencedor == 'X'){
+         printf("\t--------------------\n\tJOGADOR X VENCEU\n\t--------------------");   
+      } else if(vencedor == 'O') {
+         printf("\t--------------------\n\tJOGADOR O VENCEU\n\t--------------------");
+      } else {
+         printf("\t--------------------\n\tNENHUM JOGADOR VENCEU\n\t--------------------");
+      }
 
       printf("\nDeseja jogar novamente? S/N ");
       scanf("%s",&opcao);
