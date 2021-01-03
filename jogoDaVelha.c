@@ -31,11 +31,21 @@ void tabuleiro(char casas[9]){
 void main(){
    char casas[9];
    char opcao = 's', vez, vencedor;
-   int countJogadas, jogada;
+   int countJogadas, jogada, xPlacar = 0, oPlacar = 0, jogador;
+   while(jogador < 1 || jogador > 2){
+      system("cls");
+      printf("\n");
+      printf("\tJOGAR COM:\n \t\t1 - amigo\n \t\t2 - computador\n");
+      printf("\tEscolha uma opcao: ");
+      scanf("%d", &jogador);
+   }
+
    while(opcao == 's' || opcao == 'S'){
       countJogadas = 1;
       limpar(casas);
       tabuleiro(casas);
+      printf("\nPLACAR X: %d\n", xPlacar);
+      printf("PLACAR O: %d\n", oPlacar);
       while(countJogadas <= 9){
          if(countJogadas %2 != 0){
             vez = 'X';
@@ -60,73 +70,110 @@ void main(){
                countJogadas ++;
             }
          } else {
-            if(jogada < 1 || jogada > 9){
-               printf("Jogada %d invalida. Voce so pode marcar de 1 a 9\n", jogada);
-               getchar();
-               jogada = 0;
-            } else if(casas[jogada-1] == 'X' || casas[jogada-1] == 'O'){
-               printf("Casa ocupada. Jogada invalida\n");
-               getchar();
-               jogada = 0;
-            }
-            else {
-               casas[jogada-1] = 'O';
-               countJogadas ++;
+            switch(jogador){
+               case 1:
+                  if(jogada < 1 || jogada > 9){
+                     printf("Jogada %d invalida. Voce so pode marcar de 1 a 9\n", jogada);
+                     getchar();
+                     jogada = 0;
+                  } else if(casas[jogada-1] == 'X' || casas[jogada-1] == 'O'){
+                     printf("Casa ocupada. Jogada invalida\n");
+                     getchar();
+                     jogada = 0;
+                  }
+                  else {
+                     casas[jogada-1] = 'O';
+                     countJogadas ++;
+                  }
+               break;
+
+               case 2:
+                  if(casas[0] == 'X' && casas[1] == 'X') { casas[2] == 'O'; }
+                  if(casas[3] == 'X' && casas[4] == 'X') { casas[5] == 'O'; }
+                  if(casas[6] == 'X' && casas[7] == 'X') { casas[8] == 'O'; }
+
+                  if(casas[0] == 'X' && casas[3] == 'X') { casas[6] == 'O'; }
+                  if(casas[1] == 'X' && casas[4] == 'X') { casas[7] == 'O'; }
+                  if(casas[2] == 'X' && casas[5] == 'X') { casas[8] == 'O'; }
+
+                  if(casas[0] == 'X' && casas[4] == 'X') { casas[8] == 'O'; }
+                  if(casas[2] == 'X' && casas[4] == 'X') { casas[6] == 'O'; }
+               break;
             }
          }
+
+         // --------------------------------- XXXXXX ---------------------------
          if(casas[0] == 'X' && casas[1] == 'X' && casas[2] == 'X'){ // X LINHA 1
             vencedor = 'X';
+            xPlacar ++;
             countJogadas = 10;
          } else if(casas[3] == 'X' && casas[4] == 'X' && casas[5] == 'X'){ // X LINHA 2
             vencedor = 'X';
+            xPlacar ++;
             countJogadas = 10;
          } else if(casas[6] == 'X' && casas[7] == 'X' && casas[8] == 'X'){ // X LINHA 3
             vencedor = 'X';
+            xPlacar ++;
             countJogadas = 10;
          } else if(casas[0] == 'X' && casas[3] == 'X' && casas[6] == 'X'){ // X COLUNA 1
             vencedor = 'X';
+            xPlacar ++;
             countJogadas = 10;
          } else if(casas[1] == 'X' && casas[4] == 'X' && casas[7] == 'X'){ // X COLUNA 2
             vencedor = 'X';
+            xPlacar ++;
             countJogadas = 10;
          } else if(casas[2] == 'X' && casas[5] == 'X' && casas[8] == 'X'){ // X COLUNA 3
             vencedor = 'X';
+            xPlacar ++;
             countJogadas = 10;
          } else if(casas[0] == 'X' && casas[4] == 'X' && casas[8] == 'X'){  // X DIAGONAL 1
             vencedor = 'X';
+            xPlacar ++;
             countJogadas = 10;           
          } else if(casas[2] == 'X' && casas[4] == 'X' && casas[6] == 'X'){ // X DIAGONAL 2
             vencedor = 'X';
+            xPlacar ++;
             countJogadas = 10;
          }
 
-
+         // ----------------------------------- OOOOOO -------------------------------------------
          if(casas[0] == 'O' && casas[1] == 'O' && casas[2] == 'O'){ // O LINHA 1
             vencedor = 'O';
+            oPlacar ++;
             countJogadas = 10;
          } else if(casas[3] == 'O' && casas[4] == 'O' && casas[5] == 'O'){ // O LINHA 2
             vencedor = 'O';
+            oPlacar ++;
             countJogadas = 10;
          } else if(casas[6] == 'O' && casas[7] == 'O' && casas[8] == 'O'){ // O LINHA 3
             vencedor = 'O';
+            oPlacar ++;
             countJogadas = 10;
          } else if(casas[0] == 'O' && casas[3] == 'O' && casas[6] == 'O'){ // O COLUNA 1
             vencedor = 'O';
+            oPlacar ++;
             countJogadas = 10;
          } else if(casas[1] == 'O' && casas[4] == 'O' && casas[7] == 'O'){ // O COLUNA 2
             vencedor = 'O';
+            oPlacar ++;
             countJogadas = 10;
          } else if(casas[2] == 'O' && casas[5] == 'O' && casas[8] == 'O'){ // O COLUNA 3
             vencedor = 'O';
+            oPlacar ++;
             countJogadas = 10;
          } else if(casas[0] == 'O' && casas[4] == 'O' && casas[8] == 'O'){  // O DIAGONAL 1
             vencedor = 'O';
+            oPlacar ++;
             countJogadas = 10;           
          } else if(casas[2] == 'O' && casas[4] == 'O' && casas[6] == 'O'){ // O DIAGONAL 2
             vencedor = 'O';
+            oPlacar ++;
             countJogadas = 10;
          }
          tabuleiro(casas);
+         printf("\nPLACAR X: %d\n", xPlacar);
+         printf("PLACAR O: %d\n", oPlacar);
       }
       if(vencedor == 'X'){
          printf("\t--------------------\n\tJOGADOR X VENCEU\n\t--------------------");   
