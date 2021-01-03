@@ -31,8 +31,8 @@ void main() {
    char opcao = 's', vez;
    int countJogadas, jogada;
    while(opcao == 's' || opcao == 'S'){
-      limpar(casas);
       countJogadas = 1;
+      limpar(casas);
       tabuleiro(casas);
       while(countJogadas <= 9){
          if(countJogadas %2 != 0){
@@ -40,6 +40,7 @@ void main() {
          } else {
             vez = 'O';
          }
+         printf("\nVEZ: %c\n", vez);
          printf("Deseja jogar em qual casa? ");
          scanf("%d", &jogada);
          getchar();
