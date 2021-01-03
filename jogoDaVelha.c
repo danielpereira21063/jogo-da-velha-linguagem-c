@@ -5,7 +5,6 @@
 
 */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -32,12 +31,20 @@ void tabuleiro(char casas[9]){
 void main(){
    char casas[9];
    char opcao = 's', vez, vencedor;
-   int countJogadas, jogada, xPlacar = 0, oPlacar = 0, jogador;
+   int countJogadas, jogada, xPlacar = 0, oPlacar = 0, jogador = 0, dificuldade = 0;
    while(jogador < 1 || jogador > 2){
       printf("\n");
       printf("\tJOGAR COM:\n \t\t1 - amigo\n \t\t2 - computador\n\n");
       printf("\tEscolha uma opcao: ");
       scanf("%i", &jogador);
+      getchar();
+      system("cls");
+   }
+   while(dificuldade < 1 || dificuldade > 2){
+      printf("\n");
+      printf("\tEscolha a dificuldade: \n \t\t1 - facil\n \t\t2 - medio\n\n");
+      printf("\tEscolha uma opcao: ");  
+      scanf("%i", &dificuldade);
       getchar();
       system("cls");
    }
@@ -49,7 +56,7 @@ void main(){
       printf("\nPLACAR X: %d\n", xPlacar);
       printf("PLACAR O: %d\n", oPlacar);
       while(countJogadas <= 9){
-         if(countJogadas %2 != 0){
+          if(countJogadas %2 != 0){
             vez = 'X';
          } else {
             vez = 'O';
@@ -63,45 +70,105 @@ void main(){
             break;
 
             case 2: // computador
-               if(vez == 'O'){
-                  srand((unsigned)time(NULL));
-                  printf("Pensando... %d",jogada);
-                  if(jogada < 1 || jogada > 9){
-                     jogada = rand() % 12; //NUMERO ALEATORIO MAIOR QUE jogada APENAS PARA DAR A SENSACAO DE QUE O COMPUTADOR ESTA PENSANDO
-                  } else if(casas[jogada-1] == 'X' || casas[jogada-1] == 'O'){
-                     jogada = rand() % 12; //NUMERO ALEATORIO MAIOR QUE jogada APENAS PARA DAR A SENSACAO DE QUE O COMPUTADOR ESTA PENSANDO
-                  } else {
-                     casas[jogada-1] = 'O';
-                     countJogadas ++;
-                  }
-               } else {
-                  printf("Deseja jogar em qual casa? ");
-                  scanf("%d", &jogada);
-                  getchar();
-                  if(jogada < 1 || jogada > 9){
-                     printf("Jogada %d invalida. Voce so pode marcar de 1 a 9\n", jogada);
-                     getchar();
-                     jogada = 0;
-                  } else if(casas[jogada-1] == 'O' || casas[jogada-1] == 'X'){
-                     printf("Casa ocupada. Jogada invalida\n");
-                     getchar();
-                     jogada = 0;
-                  } else {
-                     casas[jogada-1] = 'X';
-                     countJogadas ++;
-                  }
+               switch(dificuldade){
+                  case 1:
+                     if(vez == 'O'){
+                        srand((unsigned)time(NULL));
+                        printf("Pensando... %d",jogada);
+                        if(jogada < 1 || jogada > 9){
+                           jogada = rand() % 12; //NUMERO ALEATORIO MAIOR QUE jogada APENAS PARA DAR A IMPRESSAO DE QUE O COMPUTADOR ESTA PENSANDO
+                        } else if(casas[jogada-1] == 'X' || casas[jogada-1] == 'O'){
+                           jogada = rand() % 12; //NUMERO ALEATORIO MAIOR QUE jogada APENAS PARA DAR A IMPRESSAO DE QUE O COMPUTADOR ESTA PENSANDO
+                        } else {
+                           casas[jogada-1] = 'O';
+                           countJogadas ++;
+                        }
+                     } else {
+                        printf("Deseja jogar em qual casa? ");
+                        scanf("%d", &jogada);
+                        getchar();
+
+                        if(jogada < 1 || jogada > 9){
+                           printf("Jogada %d invalida. Voce so pode marcar de 1 a 9\n", jogada);
+                           getchar();
+                           jogada = 0;
+                        } else if(casas[jogada-1] == 'O' || casas[jogada-1] == 'X'){
+                           printf("Casa ocupada. Jogada invalida\n");
+                           getchar();
+                           jogada = 0;
+                        } else {
+                           casas[jogada-1] = 'X';
+                           countJogadas ++;
+                        }
+                     }
+                  break;  
+
+                  case 2:
+                     if(vez == 'X'){
+                        printf("Deseja jogar em qual casa? ");
+                        scanf("%d", &jogada);
+                        getchar();
+
+                        if(jogada < 1 || jogada > 9){
+                           printf("Jogada %d invalida. Voce so pode marcar de 1 a 9\n", jogada);
+                           getchar();
+                           jogada = 0;
+                        } else if(casas[jogada-1] == 'O' || casas[jogada-1] == 'X'){
+                           printf("Casa ocupada. Jogada invalida\n");
+                           getchar();
+                           jogada = 0;
+                        } else {
+                           casas[jogada-1] = 'X';
+                           countJogadas ++;
+                        }
+                     } else {
+                        if(casas[0] == 'X' && casas[1] == 'X' && casas[2] == ' ') { jogada = 3;}
+
+                        else if(casas[0] == ' ' && casas[1] == ' ' && casas[2] == ' ') { jogada = 2; }
+                        else if(casas[3] == ' ' && casas[4] == ' ' && casas[5]== ' ') { jogada = 5; }
+                        else if(casas[6] == ' ' && casas[7] == ' ' && casas[8] == ' ') { jogada = 8; }
+
+                        else if(casas[0] == 'X' && casas[1] == ' ' && casas[2] == ' ') { jogada = 2; }
+                        else if(casas[3] == ' ' && casas[4] == 'X' && casas[5]== ' ') { jogada = 5; }
+                        else if(casas[6] == ' ' && casas[7] == ' ' && casas[8] == 'X') { jogada = 8; }
+
+                        else if(casas[3] == 'X' && casas[4] == 'X' && casas[5] == ' ') { jogada = 6;}
+                        else if(casas[6] == 'X' && casas[7] == 'X' && casas[8] == ' ') { jogada = 9;}
+
+                        else if(casas[0] == 'X' && casas[3] == 'X' && casas[6] == ' ') { jogada = 7;}
+                        else if(casas[1] == 'X' && casas[4] == 'X' && casas[7] == ' ') { jogada = 8;}
+                        else if(casas[2] == 'X' && casas[5] == 'X' && casas[8] == ' ') { jogada = 9;}
+
+                        else if(casas[0] == 'X' && casas[4] == 'X' && casas[8] == ' ') { jogada = 9;}
+                        else if(casas[2] == 'X' && casas[4] == 'X' && casas[7] == ' ') { jogada = 7;}
+
+
+                        else if(casas[0] == 'X' && casas[1] == ' ' && casas[2] == 'X') { jogada = 2;}
+                        else if(casas[3] == 'X' && casas[4] == ' ' && casas[5] == 'X') { jogada = 5;}
+                        else if(casas[6] == 'X' && casas[7] == ' ' && casas[8] == 'X') { jogada = 9;}
+
+                        else if(casas[0] == ' ' && casas[3] == 'X' && casas[6] == 'X') { jogada = 1;}
+                        else if(casas[1] == ' ' && casas[4] == 'X' && casas[7] == 'X') { jogada = 2;}
+                        else if(casas[2] == ' ' && casas[5] == 'X' && casas[8] == 'X') { jogada = 3;}
+
+                        else if(casas[2] == ' ' && casas[4] == 'X' && casas[6] == 'X') { jogada = 1;} 
+                        else if(casas[2] == 'X' && casas[4] == ' ' && casas[7] == 'X') { jogada = 5;}
+                        else if(casas[0] == 'X' && casas[4] == 'X' && casas[8] == ' ') { jogada = 9;}
+
+
+                        else if(casas[2] == ' ' && casas[4] == ' ' && casas[6] == 'X') { jogada = 1;} 
+                        else if(casas[2] == 'X' && casas[4] == ' ' && casas[7] == ' ') { jogada = 4;}
+                        else if(casas[0] == ' ' && casas[4] == 'X' && casas[8] == ' ') { jogada = 7;}
+                        
+                        else if(casas[0] == ' ' && casas[3] == ' ' && casas[6] == 'X') { jogada = 1;}
+                        else if(casas[1] == ' ' && casas[4] == 'X' && casas[7] == ' ') { jogada = 2;}
+                        else if(casas[2] == ' ' && casas[5] == ' ' && casas[8] == 'X') { jogada = 5;}
+
+                        casas[jogada-1] = 'O';
+                        countJogadas++;
+                     }
+                  break;
                }
-
-                  // if(casas[0] == 'X' && casas[1] == 'X') { casas[2] == 'O'; vez = 'O'; countJogadas ++; }
-                  // if(casas[3] == 'X' && casas[4] == 'X') { casas[5] == 'O'; vez = 'O'; countJogadas ++; }
-                  // if(casas[6] == 'X' && casas[7] == 'X') { casas[8] == 'O'; vez = 'O'; countJogadas ++; }
-
-                  // if(casas[0] == 'X' && casas[3] == 'X') { casas[6] == 'O'; vez = 'O'; countJogadas ++; }
-                  // if(casas[1] == 'X' && casas[4] == 'X') { casas[7] == 'O'; vez = 'O'; countJogadas ++; }
-                  // if(casas[2] == 'X' && casas[5] == 'X') { casas[8] == 'O'; vez = 'O'; countJogadas ++; }
-
-                  // if(casas[0] == 'X' && casas[4] == 'X') { casas[8] == 'O'; vez = 'O'; countJogadas ++; }
-                  // if(casas[2] == 'X' && casas[4] == 'X') { casas[6] == 'O'; vez = 'O'; countJogadas ++; }
 
             break;
          }
@@ -180,16 +247,17 @@ void main(){
          printf("PLACAR O: %d\n", oPlacar);
       }
       if(vencedor == 'X'){
-         printf("\t--------------------\n\tJOGADOR X VENCEU\n\t--------------------");   
+         printf("\t------------------------\n\tJOGADOR X VENCEU\n\t-----------------------");   
       } else if(vencedor == 'O') {
-         printf("\t--------------------\n\tJOGADOR O VENCEU\n\t--------------------");
+         printf("\t----------------------\n\tJOGADOR O VENCEU\n\t------------------------");
       } else {
-         printf("\t--------------------\n\tNENHUM JOGADOR VENCEU\n\t--------------------");
+         printf("\t------------------------\n\tNENHUM JOGADOR VENCEU\n\t------------------------");
       }
-
       printf("\nDeseja jogar novamente? S/N ");
       scanf("%s",&opcao);
-      getchar(); // LIMPA O BUFFER DO TECLADO
+      getchar(); // LIMPA O BUFFER DO TECLADO  
    }
+   system("cls");
+   printf("\n\n\n\n\n\n\tObrigado por jogar\n\n\n");
    system("pause");
 }
