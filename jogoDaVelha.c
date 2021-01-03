@@ -122,47 +122,60 @@ void main(){
                            countJogadas ++;
                         }
                      } else {
-                        if(casas[0] == 'X' && casas[1] == 'X' && casas[2] == ' ') { jogada = 3;}
+                        if(casas[0] == 'X' && casas[1] == ' ' && casas[2] == ' ') { jogada = 3; }
+                        else if(casas[0] == ' ' && casas[1] == 'X' && casas[2] == ' ') { jogada = 2; }
+                        else if(casas[0] == ' ' && casas[1] == ' ' && casas[2] == 'X') { jogada = 1; }
 
-                        else if(casas[0] == ' ' && casas[1] == ' ' && casas[2] == ' ') { jogada = 2; }
-                        else if(casas[3] == ' ' && casas[4] == ' ' && casas[5]== ' ') { jogada = 5; }
-                        else if(casas[6] == ' ' && casas[7] == ' ' && casas[8] == ' ') { jogada = 8; }
-
-                        else if(casas[0] == 'X' && casas[1] == ' ' && casas[2] == ' ') { jogada = 2; }
-                        else if(casas[3] == ' ' && casas[4] == 'X' && casas[5]== ' ') { jogada = 5; }
-                        else if(casas[6] == ' ' && casas[7] == ' ' && casas[8] == 'X') { jogada = 8; }
-
-                        else if(casas[3] == 'X' && casas[4] == 'X' && casas[5] == ' ') { jogada = 6;}
-                        else if(casas[6] == 'X' && casas[7] == 'X' && casas[8] == ' ') { jogada = 9;}
-
-                        else if(casas[0] == 'X' && casas[3] == 'X' && casas[6] == ' ') { jogada = 7;}
-                        else if(casas[1] == 'X' && casas[4] == 'X' && casas[7] == ' ') { jogada = 8;}
-                        else if(casas[2] == 'X' && casas[5] == 'X' && casas[8] == ' ') { jogada = 9;}
-
-                        else if(casas[0] == 'X' && casas[4] == 'X' && casas[8] == ' ') { jogada = 9;}
-                        else if(casas[2] == 'X' && casas[4] == 'X' && casas[7] == ' ') { jogada = 7;}
-
-
-                        else if(casas[0] == 'X' && casas[1] == ' ' && casas[2] == 'X') { jogada = 2;}
-                        else if(casas[3] == 'X' && casas[4] == ' ' && casas[5] == 'X') { jogada = 5;}
-                        else if(casas[6] == 'X' && casas[7] == ' ' && casas[8] == 'X') { jogada = 9;}
-
-                        else if(casas[0] == ' ' && casas[3] == 'X' && casas[6] == 'X') { jogada = 1;}
-                        else if(casas[1] == ' ' && casas[4] == 'X' && casas[7] == 'X') { jogada = 2;}
-                        else if(casas[2] == ' ' && casas[5] == 'X' && casas[8] == 'X') { jogada = 3;}
-
-                        else if(casas[2] == ' ' && casas[4] == 'X' && casas[6] == 'X') { jogada = 1;} 
-                        else if(casas[2] == 'X' && casas[4] == ' ' && casas[7] == 'X') { jogada = 5;}
-                        else if(casas[0] == 'X' && casas[4] == 'X' && casas[8] == ' ') { jogada = 9;}
-
-
-                        else if(casas[2] == ' ' && casas[4] == ' ' && casas[6] == 'X') { jogada = 1;} 
-                        else if(casas[2] == 'X' && casas[4] == ' ' && casas[7] == ' ') { jogada = 4;}
-                        else if(casas[0] == ' ' && casas[4] == 'X' && casas[8] == ' ') { jogada = 7;}
+                        else if(casas[3] == 'X' && casas[4] == ' ' && casas[5]== ' ') { jogada = 5; }
+                        else if(casas[3] == ' ' && casas[4] == 'X' && casas[5]== ' ') { jogada = 4; }
+                        else if(casas[3] == ' ' && casas[4] == ' ' && casas[5]== 'X') { jogada = 3; }
                         
-                        else if(casas[0] == ' ' && casas[3] == ' ' && casas[6] == 'X') { jogada = 1;}
-                        else if(casas[1] == ' ' && casas[4] == 'X' && casas[7] == ' ') { jogada = 2;}
-                        else if(casas[2] == ' ' && casas[5] == ' ' && casas[8] == 'X') { jogada = 5;}
+                        else if(casas[6] == 'X' && casas[7] == ' ' && casas[8] == ' ') { jogada = 9; }
+                        else if(casas[6] == ' ' && casas[7] == 'X' && casas[8] == ' ') { jogada = 8; }
+                        else if(casas[6] == ' ' && casas[7] == ' ' && casas[8] == 'X') { jogada = 7; }
+
+                        if(casas[jogada-1] != ' '){
+                           while(casas[jogada-1] != ' '){
+                              srand((unsigned)time(NULL));
+                              jogada = rand() % 10;
+                           }
+                        }
+
+                        // else if(casas[0] == 'X' && casas[1] == ' ' && casas[2] == ' ') { jogada = 2; }
+                        // else if(casas[3] == ' ' && casas[4] == 'X' && casas[5]== ' ') { jogada = 5; }
+                        // else if(casas[6] == ' ' && casas[7] == ' ' && casas[8] == 'X') { jogada = 8; }
+
+                        // else if(casas[3] == 'X' && casas[4] == 'X' && casas[5] == ' ') { jogada = 6;}
+                        // else if(casas[6] == 'X' && casas[7] == 'X' && casas[8] == ' ') { jogada = 9;}
+
+                        // else if(casas[0] == 'X' && casas[3] == 'X' && casas[6] == ' ') { jogada = 7;}
+                        // else if(casas[1] == 'X' && casas[4] == 'X' && casas[7] == ' ') { jogada = 8;}
+                        // else if(casas[2] == 'X' && casas[5] == 'X' && casas[8] == ' ') { jogada = 9;}
+
+                        // else if(casas[0] == 'X' && casas[4] == 'X' && casas[8] == ' ') { jogada = 9;}
+                        // else if(casas[2] == 'X' && casas[4] == 'X' && casas[7] == ' ') { jogada = 7;}
+
+
+                        // else if(casas[0] == 'X' && casas[1] == ' ' && casas[2] == 'X') { jogada = 2;}
+                        // else if(casas[3] == 'X' && casas[4] == ' ' && casas[5] == 'X') { jogada = 5;}
+                        // else if(casas[6] == 'X' && casas[7] == ' ' && casas[8] == 'X') { jogada = 9;}
+
+                        // else if(casas[0] == ' ' && casas[3] == 'X' && casas[6] == 'X') { jogada = 1;}
+                        // else if(casas[1] == ' ' && casas[4] == 'X' && casas[7] == 'X') { jogada = 2;}
+                        // else if(casas[2] == ' ' && casas[5] == 'X' && casas[8] == 'X') { jogada = 3;}
+
+                        // else if(casas[2] == ' ' && casas[4] == 'X' && casas[6] == 'X') { jogada = 1;} 
+                        // else if(casas[2] == 'X' && casas[4] == ' ' && casas[7] == 'X') { jogada = 5;}
+                        // else if(casas[0] == 'X' && casas[4] == 'X' && casas[8] == ' ') { jogada = 9;}
+
+
+                        // else if(casas[2] == ' ' && casas[4] == ' ' && casas[6] == 'X') { jogada = 1;} 
+                        // else if(casas[2] == 'X' && casas[4] == ' ' && casas[7] == ' ') { jogada = 4;}
+                        // else if(casas[0] == ' ' && casas[4] == 'X' && casas[8] == ' ') { jogada = 7;}
+                        
+                        // else if(casas[0] == ' ' && casas[3] == ' ' && casas[6] == 'X') { jogada = 1;}
+                        // else if(casas[1] == ' ' && casas[4] == 'X' && casas[7] == ' ') { jogada = 2;}
+                        // else if(casas[2] == ' ' && casas[5] == ' ' && casas[8] == 'X') { jogada = 5;}
 
                         casas[jogada-1] = 'O';
                         countJogadas++;
