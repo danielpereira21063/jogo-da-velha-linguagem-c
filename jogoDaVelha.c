@@ -10,6 +10,13 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+void limpar(char casas[9]){
+   int i;
+   for(i = 0; i < 9; i++){
+      casas[i] = ' ';
+   }
+}
+
 void tabuleiro(char casas[9]){
    system("cls");
    printf("\t %c | %c | %c \n",casas[0],casas[1],casas[2]);
@@ -22,11 +29,9 @@ void tabuleiro(char casas[9]){
 void main() {
    char casas[9];
    char opcao = 's', vez;
-   int countJogadas, jogada, i;
+   int countJogadas, jogada;
    while(opcao == 's' || opcao == 'S'){
-      for(i = 0; i < 9; i++){
-         casas[i] = ' ';
-      }
+      limpar(casas);
       countJogadas = 1;
       tabuleiro(casas);
       while(countJogadas <= 9){
