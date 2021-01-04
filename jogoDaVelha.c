@@ -41,13 +41,16 @@ void main(){
       getchar();
       system("cls");
    }
-   while(dificuldade < 1 || dificuldade > 2){
-      printf("\n");
-      printf("\tEscolha a dificuldade: \n \t\t1 - facil\n \t\t2 - medio\n\n");
-      printf("\tEscolha uma opcao: ");  
-      scanf("%i", &dificuldade);
-      getchar();
-      system("cls");
+
+   if(jogador == 2){
+      while(dificuldade < 1 || dificuldade > 2){
+         printf("\n");
+         printf("\tEscolha a dificuldade: \n \t\t1 - facil\n \t\t2 - medio\n\n");
+         printf("\tEscolha uma opcao: ");  
+         scanf("%i", &dificuldade);
+         getchar();
+         system("cls");
+      }
    }
 
    while(opcao == 's' || opcao == 'S'){
@@ -68,6 +71,37 @@ void main(){
                printf("Deseja jogar em qual casa? ");
                scanf("%d", &jogada);
                getchar();
+               switch(vez){
+                  case 'X':
+                     if(jogada < 1 || jogada > 9){
+                        printf("Jogada %d invalida. Voce so pode marcar de 1 a 9\n", jogada);
+                        getchar();
+                        jogada = 0;
+                     } else if(casas[jogada-1] == 'O' || casas[jogada-1] == 'X'){
+                        printf("Casa ocupada. Jogada invalida\n");
+                        getchar();
+                        jogada = 0;
+                     } else {
+                        casas[jogada-1] = 'X';
+                        countJogadas ++;
+                     }
+                  break;
+
+                  case 'O':
+                     if(jogada < 1 || jogada > 9){
+                        printf("Jogada %d invalida. Voce so pode marcar de 1 a 9\n", jogada);
+                        getchar();
+                        jogada = 0;
+                     } else if(casas[jogada-1] == 'O' || casas[jogada-1] == 'X'){
+                        printf("Casa ocupada. Jogada invalida\n");
+                        getchar();
+                        jogada = 0;
+                     } else {
+                        casas[jogada-1] = 'O';
+                        countJogadas ++;
+                     }
+                  break;
+               }
             break;
 
             case 2: // computador
