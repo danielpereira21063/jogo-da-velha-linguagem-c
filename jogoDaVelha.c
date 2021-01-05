@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void tabuleiro(char casas[9]){
+void desenharTabuleiro(char casas[9]){
    system("cls");
    printf("\t %c | %c | %c \n",casas[0],casas[1],casas[2]);
    printf("\t ---------- \n");
@@ -12,6 +12,6 @@ void tabuleiro(char casas[9]){
 
 void main() {
    char casas[9] = {'1','2','3','4','5','6','7','8','9'};
-   tabuleiro(casas);
+   desenharTabuleiro(casas);
    system("pause");
 }
