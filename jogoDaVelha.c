@@ -14,8 +14,7 @@ void main() {
    char casas[9];
    limparTela();
    limparCasas(casas);
-   jogo();
-   desenharTabuleiro(casas);
+   jogo(casas);
    pausar();
 }
 
@@ -67,6 +66,8 @@ int definirDificuldade() {
 }
 
 int desenharTabuleiro(char casas[9]) {
+   limparTela();
+   printf("\n\n");
    printf("\t %c | %c | %c \n",casas[0],casas[1],casas[2]);
    printf("\t ---------- \n");
    printf("\t %c | %c | %c \n",casas[3],casas[4],casas[5]);
@@ -74,10 +75,48 @@ int desenharTabuleiro(char casas[9]) {
    printf("\t %c | %c | %c \n",casas[6],casas[7],casas[8]);
 }
 
-int jogo() {
+int jogo(char casas[9]) {
+   int countJogadas = 1, jogada;
+   char vez;
    switch(definirJogador()) { // CHAMA A FUNCAO PARA DEFINIR O JOGADOR
       case 1: // JOGAR COM UM AMIGO
-         printf("\nESCOLHEU AMIGO\n");
+         while(countJogadas <= 9) {
+            if(countJogadas % 2 == 0) {
+               vez = 'O';
+            } else {
+               vez = 'X';
+            }
+            desenharTabuleiro(casas);
+            printf("\n DESEJA JOGAR EM QUAL CASA? ");
+            scanf("%d",&jogada);
+            switch(vez) {
+               case 'X':
+                  if(casas[jogada-1] != ' ') {
+                     printf("\nCASA OCUPADA. JOGADA INVALIDA\n");
+                     pausar();
+                  } else if(jogada < 1 || jogada > 9) {
+                     printf("\nJOGADA %d INVALIDA. VOCE SO PODE MARCAR DE 1 A 9\n");
+                     pausar();
+                  } else {
+                     casas[jogada-1] = 'X';
+                     countJogadas++;
+                  }
+               break;
+
+               case 'O':
+                  if(casas[jogada-1] != ' ') {
+                     printf("\nCASA OCUPADA. JOGADA INVALIDA\n");
+                     pausar();
+                  } else if(jogada < 1 || jogada > 9) {
+                     printf("\nJOGADA %d INVALIDA. VOCE SO PODE MARCAR DE 1 A 9\n");
+                     pausar();
+                  } else {
+                     casas[jogada-1] = 'O';
+                     countJogadas++;
+                  }
+               break;
+            }
+         }
       break;
 
 
@@ -95,8 +134,9 @@ int jogo() {
          }
       break;
    }
+   desenharTabuleiro(casas);
 }
 
-int pausar(){
+int pausar() {
    system("pause");
 }
