@@ -11,7 +11,7 @@ void main() {
    definirDificuldade();
    limparTela();
    desenharTabuleiro(casas);
-   system("pause");
+   pausar();
 }
 
 int limparTela() {
@@ -63,4 +63,8 @@ int desenharTabuleiro(char casas[9]) {
    printf("\t %c | %c | %c \n",casas[3],casas[4],casas[5]);
    printf("\t ---------- \n");
    printf("\t %c | %c | %c \n",casas[6],casas[7],casas[8]);
+}
+
+int pausar(){
+   system("pause");
 }
