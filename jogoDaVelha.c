@@ -77,7 +77,7 @@ int desenharTabuleiro(char casas[9]) {
 
 int jogo(char casas[9]) {
    int countJogadas = 1, jogada;
-   char vez;
+   char vez, vencedor;
    switch(definirJogador()) { // CHAMA A FUNCAO PARA DEFINIR O JOGADOR
       case 1: // JOGAR COM UM AMIGO
          while(countJogadas <= 9) {
@@ -135,6 +135,18 @@ int jogo(char casas[9]) {
       break;
    }
    desenharTabuleiro(casas);
+   switch(vencedor) {
+      case 'X':
+         printf("\n\nJogador X venceu\n\n");
+      break;
+
+      case 'O':
+         printf("\n\nJogador O venceu\n\n");
+      break;
+
+      default:
+         printf("\n\nNENHUM JOGADOR VENCEU\n\n");
+   }
 }
 
 int pausar() {
